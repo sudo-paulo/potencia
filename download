@@ -1,0 +1,75 @@
+// ── THEME TOGGLE WITH PLUG ANIMATION ──
+  const btn = document.getElementById('themeBtn');
+  const svg = document.getElementById('plugSvg');
+  const html = document.documentElement;
+  let isDark = true;
+  let animating = false;
+
+  function spawnSparks() {
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const container = document.createElement('div');
+    container.className = 'spark';
+    container.style.cssText = `left:${cx}px;top:${cy}px;position:fixed;z-index:9999;pointer-events:none;`;
+    const angles = [0,45,90,135,180,225,270,315];
+    angles.forEach(angle => {
+      const span = document.createElement('span');
+      const rad = angle * Math.PI / 180;
+      const dist = 18 + Math.random() * 14;
+      span.style.setProperty('--dx', Math.cos(rad)*dist + 'px');
+      span.style.setProperty('--dy', Math.sin(rad)*dist + 'px');
+      span.style.animationDelay = Math.random()*0.1 + 's';
+      container.appendChild(span);
+    });
+    document.body.appendChild(container);
+    setTimeout(() => container.remove(), 600);
+  }
+
+  btn.addEventListener('click', () => {
+    if (animating) return;
+    animating = true;
+    if (isDark) {
+      // plug in → go light
+      svg.classList.remove('anim-out');
+      svg.classList.add('anim-in');
+      setTimeout(() => { spawnSparks(); }, 200);
+      setTimeout(() => {
+        html.setAttribute('data-theme', 'light');
+        isDark = false;
+        svg.classList.remove('anim-in');
+        animating = false;
+      }, 420);
+    } else {
+      // unplug → go dark
+      svg.classList.remove('anim-in');
+      svg.classList.add('anim-out');
+      setTimeout(() => {
+        html.setAttribute('data-theme', 'dark');
+        isDark = true;
+        svg.classList.remove('anim-out');
+        animating = false;
+      }, 380);
+    }
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── LEAD FORM → WHATSAPP ──
+  function sendLead(e) {
+    e.preventDefault();
+    const name    = document.querySelectorAll('.form-group input')[0].value.trim();
+    const phone   = document.querySelectorAll('.form-group input')[1].value.trim();
+    const service = document.querySelector('.form-group select').value;
+    const desc    = document.querySelector('.form-group textarea').value.trim();
+    let msg = 'Olá! Vim pelo site e gostaria de um orçamento.\n\n';
+    if (name)    msg += `*Nome:* ${name}\n`;
+    if (phone)   msg += `*Telefone:* ${phone}\n`;
+    if (service) msg += `*Serviço:* ${service}\n`;
+    if (desc)    msg += `*Descrição:* ${desc}\n`;
+    window.open('https://wa.me/32999485792?text=' + encodeURIComponent(msg), '_blank');
+  }

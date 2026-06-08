@@ -1,0 +1,82 @@
+# ⚡ Potência Serviços Elétricos — Landing Page
+
+Site institucional e de captação de leads para a **Potência Serviços Elétricos**, empresa de serviços elétricos residenciais, prediais e industriais em Ubá – MG.
+
+---
+
+## Estrutura do repositório
+
+```
+potencia-eletrica/
+├── index.html        # Página principal
+├── css/
+│   └── style.css     # Todos os estilos + variáveis de tema
+├── js/
+│   └── main.js       # Animação da tomada, tema, scroll reveal, formulário
+├── assets/           # Imagens e ícones (adicionar aqui)
+└── README.md
+```
+
+---
+
+## Como usar
+
+Basta abrir o `index.html` no navegador. Não há dependências de build — é HTML/CSS/JS puro.
+
+### Hospedagem recomendada
+
+**Vercel** (recomendado — deploy em 1 clique):
+1. Acesse [vercel.com](https://vercel.com) e faça login com sua conta GitHub
+2. Clique em **"Add New Project"**
+3. Importe este repositório
+4. Clique em **Deploy** — pronto, o site estará no ar
+
+**GitHub Pages** (gratuito, direto do repositório):
+1. Acesse o repositório no GitHub
+2. Vá em **Settings → Pages**
+3. Em "Source", selecione `main` branch e pasta `/ (root)`
+4. Salve — o site ficará disponível em `https://seu-usuario.github.io/potencia-eletrica`
+
+---
+
+## Personalização
+
+### Atualizar número de WhatsApp
+No `index.html` e `js/main.js`, busque por `32999485792` e substitua pelo número correto.
+
+### Atualizar e-mail
+Busque por `potenciaeletrik@gmail.com` no `index.html`.
+
+### Adicionar fotos reais
+Coloque as imagens na pasta `assets/` e referencie no HTML. Sugestão de imagens:
+- `assets/hero-bg.jpg` — foto de serviço para o hero
+- `assets/logo.png` — logotipo oficial
+
+### Alterar cores principais
+No topo do `css/style.css`, edite as variáveis:
+```css
+:root {
+  --gold: #D4960A;       /* cor principal dourada */
+  --gold-light: #F5B731; /* hover e destaques */
+  --gold-dim: #A87208;   /* versão escura do dourado */
+}
+```
+
+---
+
+## Funcionalidades
+
+- **Modo escuro / claro** — botão de tomada animado (plugar = claro, desplugar = escuro)
+- **Formulário de orçamento** → envia dados formatados direto para o WhatsApp
+- **Scroll reveal** — animações suaves ao rolar a página
+- **100% responsivo** — mobile, tablet e desktop
+- **SEO básico** — meta tags, título e descrição configurados
+
+---
+
+## Contato
+
+- Instagram: [@potenciaeletrica.uba](https://www.instagram.com/potenciaeletrica.uba)
+- WhatsApp: [(32) 99948-5792](https://wa.me/32999485792)
+- E-mail: potenciaeletrik@gmail.com
+- Localização: Ubá e região — Minas Gerais
